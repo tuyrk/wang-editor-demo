@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WangEditor富文本编辑器</title>
+    <script type="text/javascript" src="wangEditor.min.js"></script>
+</head>
+<body>
+<div id="editor"></div>
+<button id="btn1">获取html</button>
+<button id="btn2">获取text</button>
+</body>
+<script>
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    // 或者 var editor = new E( document.getElementById('editor') )
+    // 配置服务器端地址
+    editor.customConfig.uploadImgServer = '/upload/editor';
+    //配置指定文件名
+    editor.customConfig.uploadFileName = 'file';
+    //默认限制图片大小是5M
+    editor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024;
+    //如果图片不大，可以用base64存储
+    editor.customConfig.uploadImgShowBase64 = true;
+    editor.create();
+
+    //设置内容
+    editor.txt.html('<p>QWERTY涂元坤<img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/40/pcmoren_tian_org.png" alt="[舔屏]" data-w-e="1"><img src="article/1551803078797.jpg" style="max-width: 100%;"></p>');
+
+    document.getElementById('btn1').addEventListener('click', function () {
+        // 读取 html
+        alert(editor.txt.html())
+    }, false);
+
+    document.getElementById('btn2').addEventListener('click', function () {
+        // 读取 text
+        alert(editor.txt.text())
+    }, false);
+</script>
+</html>
